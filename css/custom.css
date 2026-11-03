@@ -1,0 +1,35 @@
+/* ==========================================================================
+   文章内图片：默认缩小显示（含竖着很长的手机截图），点击后用 Fancybox 看大图
+   只作用于 Markdown 正文里的图片，不影响 gallery 图库、头像、封面
+   ========================================================================== */
+
+#article-container p img,
+#article-container > img {
+  /* 宽度上限：相对正文宽度，也可以写 420px 这种固定值 */
+  max-width: 65%;
+  /* 高度上限：必须用 px / vh，写 % 是无效的（父元素高度是 auto，百分比会被当成 none） */
+  max-height: 420px;
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: zoom-in;
+  transition: filter .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+
+#article-container p img:hover,
+#article-container > img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+/* 手机上正文宽度本来就窄，不再按比例缩，只保留高度上限 */
+@media screen and (max-width: 768px) {
+  #article-container p img,
+  #article-container > img {
+    max-width: 100%;
+    max-height: 420px;
+    transform: none;
+    box-shadow: none;
+  }
+}
